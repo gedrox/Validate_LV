@@ -109,18 +109,7 @@ class Validate_LV {
         if (!preg_match('/^\d{6}-[1-9]\d{4}$/', $personId))
             return false;
         $personId = str_replace('-', '', $personId);
-
-        // Century '20' isn't picked ocasionaly: 
-        // It's because we can't know century and 2000 year is leap, but 1900 isn't
-        // (in 2000 there is the February 29th, in 1900 isn't)
-        // In fact everything between 4 and 324 would match
-        $validDate = checkdate(substr($personId, 2, 2), substr($personId, 0, 2), '20' . substr($personId, 4, 2));
-        if (!$validDate)
-        {
-            return false;
-        }
         
-
         // Checking last digit
         $mult = Array (
             1,
